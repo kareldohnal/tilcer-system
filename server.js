@@ -7,8 +7,8 @@ const app = express(); // Initialize the Express app
 
 // Read constants from environment variables or use defaults
 const PORT = 9000;
-const AUTH_API = process.env.AUTH_API || "http://localhost:1337/api/users/me";
-const JIDLO_TILCER_BUILD_SCRIPT = process.env.JIDLO_TILCER_BUILD_SCRIPT || '/home/kaja/jidlo.tilcer.cz/rebuild.sh';
+const AUTH_API = process.env.AUTH_API;
+const JIDLO_TILCER_BUILD_SCRIPT = process.env.JIDLO_TILCER_BUILD_SCRIPT;
 
 // Middleware to parse JSON (if needed)
 app.use(express.json());
@@ -42,7 +42,7 @@ const handleRunScript = (scriptPath) => async (req, res) => {
                     return res.status(500).send(`Script error: ${stderr}`);
                 }
                 console.log(`stdout: ${stdout}`);
-                res.send(`Script executed successfully: ${stdout}`);
+                res.status(200).send(`Script executed successfully: ${stdout}`);
             });
         } else {
             // Token validation failed
