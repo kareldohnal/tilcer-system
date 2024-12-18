@@ -2,6 +2,7 @@ require('dotenv').config(); // Load environment variables from .env file
 const express = require('express'); // Import Express
 const { exec } = require('child_process'); // Import exec to run shell scripts
 const axios = require('axios'); // Import Axios for making HTTP requests
+const cors = require('cors');
 
 const app = express(); // Initialize the Express app
 
@@ -12,6 +13,11 @@ const JIDLO_TILCER_BUILD_SCRIPT = process.env.JIDLO_TILCER_BUILD_SCRIPT;
 
 // Middleware to parse JSON (if needed)
 app.use(express.json());
+app.use(cors({
+    origin: '*',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
+}));
 
 const handleRunScript = (scriptPath) => async (req, res) => {
     const authHeader = req.headers.authorization;
