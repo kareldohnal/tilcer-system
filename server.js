@@ -59,9 +59,11 @@ const handleRunScript = (scriptPath) => async (req, res) => {
         res.status(401).send('Unauthorized');
     }
 };
+const router = express.Router();
 
-app.post('/build-jidlo', handleRunScript(JIDLO_TILCER_BUILD_SCRIPT));
+router.post('/build-jidlo', handleRunScript(JIDLO_TILCER_BUILD_SCRIPT));
 
+app.use('/api', router);
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
