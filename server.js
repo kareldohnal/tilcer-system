@@ -10,6 +10,7 @@ const app = express(); // Initialize the Express app
 const PORT = 9000;
 const AUTH_API = process.env.AUTH_API;
 const JIDLO_TILCER_BUILD_SCRIPT = process.env.JIDLO_TILCER_BUILD_SCRIPT;
+const SYSTEM_TILCER_BUILD_SCRIPT = process.env.SYSTEM_TILCER_BUILD_SCRIPT;
 
 // Middleware to parse JSON (if needed)
 app.use(express.json());
@@ -62,6 +63,7 @@ const handleRunScript = (scriptPath) => async (req, res) => {
 const router = express.Router();
 
 router.post('/build-jidlo', handleRunScript(JIDLO_TILCER_BUILD_SCRIPT));
+router.post('/build-system-fe', handleRunScript(JIDLO_TILCER_BUILD_SCRIPT));
 
 app.use('/api', router);
 // Start the server
