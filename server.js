@@ -63,7 +63,7 @@ const handleRunScript = (scriptPath) => async (req, res) => {
 const router = express.Router();
 
 router.post('/build-jidlo', handleRunScript(JIDLO_TILCER_BUILD_SCRIPT));
-router.post('/build-system-fe', handleRunScript(JIDLO_TILCER_BUILD_SCRIPT));
+router.post('/build-system-fe', handleRunScript(SYSTEM_TILCER_BUILD_SCRIPT));
 
 app.use('/api', router);
 // Start the server
